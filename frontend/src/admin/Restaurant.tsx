@@ -15,6 +15,7 @@ const Restaurant = () => {
     city: "",
     country: "",
     deliveryTime: 0,
+    address: "", // Added address
     cuisines: [],
     imageFile: undefined,
   });
@@ -49,6 +50,7 @@ const Restaurant = () => {
       formData.append("city", input.city);
       formData.append("country", input.country);
       formData.append("deliveryTime", input.deliveryTime.toString());
+      formData.append("address", input.address.toString());
       formData.append("cuisines", JSON.stringify(input.cuisines));
 
       if (input.imageFile) {
@@ -76,6 +78,7 @@ const Restaurant = () => {
           city: restaurant.city || "",
           country: restaurant.country || "",
           deliveryTime: restaurant.deliveryTime || 0,
+          address: restaurant.address || "",
           cuisines: restaurant.cuisines
             ? restaurant.cuisines.map((cuisine: string) => cuisine)
             : [],
@@ -158,7 +161,20 @@ const Restaurant = () => {
           <span className="text-sm text-red-600">{errors.deliveryTime}</span>
         )}
       </div>
-
+      <div>
+        <Label className="font-semibold text-gray-700 text-white">Address</Label>
+        <Input
+          type="text"
+          name="address"
+          value={input.address}
+          onChange={changeEventHandler}
+          placeholder="Enter your Address name"
+          className="mt-2 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-md transition-all duration-300"
+        />
+        {errors?.address && (
+          <span className="text-sm text-red-600">{errors.address}</span>
+        )}
+      </div>
       {/* Cuisines */}
       <div>
         <Label className="font-semibold text-gray-700 text-white">Cuisines</Label>

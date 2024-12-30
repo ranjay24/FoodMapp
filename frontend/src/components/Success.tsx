@@ -5,72 +5,80 @@ import { Button } from "./ui/button";
 import { useOrderStore } from "@/store/useOrderStore";
 import { useEffect } from "react";
 import { CartItem } from "@/types/cartType";
+import aaaImage from "@/assets/aaa.png"
+
 
 const Success = () => {
-    const { orders, getOrderDetails } = useOrderStore();
+  const { orders, getOrderDetails } = useOrderStore();
 
-    useEffect(() => {
-      getOrderDetails();
-    }, []);
+  useEffect(() => {
+    getOrderDetails();
+  }, []);
 
-    if (orders.length === 0)
-      return (
-        <div className="flex items-center justify-center min-h-screen">
-          <h1 className="font-bold text-2xl text-gray-700 dark:text-gray-300">
-            Order not found!
-          </h1>
-        </div>
-      );
+  if (orders.length === 0)
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+        <h1 className="font-bold text-2xl text-gray-700 dark:text-gray-300">
+          Order not found!
+        </h1>
+      </div>
+    );
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900 px-4">
-      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 max-w-lg w-full">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-200">
-            Order Status:{" "}
-            <span className="text-[#FF5A5A]">{"confirm".toUpperCase()}</span>
+    <div
+  className="font-serif flex items-center justify-center min-h-screen bg-cover bg-center bg-no-repeat px-4"
+  style={{ backgroundImage: `url(${aaaImage})` }}
+>
+      <div className="bg-white dark:bg-gray-800 shadow-2xl rounded-xl p-8 max-w-2xl w-full">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-extrabold text-gray-800 dark:text-gray-200">
+            Order Status: <span className="text-[#FF5A5A]">CONFIRM</span>
           </h1>
         </div>
-        <div className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-6 text-center">
             Order Summary
           </h2>
-          {/* Your Ordered Item Display here  */}
-          {orders.map((order:any, index:number) => (
-          <div
-          key={index}
-          >
-            {order.cartItems.map((item:CartItem) => (
-            <div className="mb-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center">
-                  <img
-                    src={item.image}
-                    alt=""
-                    className="w-14 h-14 rounded-md object-cover"
-                  />
-                  <h3 className="ml-4 text-gray-800 dark:text-gray-200 font-medium">
-                    {item.name}
-                  </h3>
-                </div>
-                <div className="text-right">
-                  <div className="text-gray-800 dark:text-gray-200 flex items-center">
-                    <IndianRupee />
-                    <span className="text-lg font-medium">
-                      {item.price}
-                    </span>
+          {/* Ordered Items Display */}
+          {orders.map((order: any, index: number) => (
+            <div key={index} className="space-y-6">
+              {order.cartItems.map((item: CartItem) => (
+                <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6" key={item._id}>
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={item.image}
+                      alt=""
+                      className="w-20 h-20 rounded-md object-cover shadow-md"
+                    />
+                    <h3 className="text-gray-800 dark:text-gray-200 font-medium text-lg">
+                      {item.name}
+                    </h3>
+                  </div>
+                  <div className="text-right md:text-left">
+                    <div className="text-gray-800 dark:text-gray-200 flex items-center justify-center md:justify-start">
+                      <IndianRupee className="w-5 h-5 mr-1 text-orange-500" />
+                      <span className="text-lg font-semibold">
+                        {item.price}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
               <Separator className="my-4" />
             </div>
-            ))}
-          </div>
-           ))} 
+          ))}
         </div>
         <Link to="/cart">
-          <Button className="bg-orange hover:bg-hoverOrange w-full py-3 rounded-md shadow-lg">
+          <Button className="bg-gray-600 hover:bg-gray-700 text-white font-bold w-full py-3 rounded-md shadow-md">
             Continue Shopping
+          </Button>
+        </Link>
+        <Separator></Separator>
+        <Separator></Separator>
+        <Separator></Separator>
+        <Link to="/track-order">
+          <Button className="bg-gray-600 hover:bg-gray-700 text-white font-bold w-full py-3 rounded-md shadow-md">
+            Track your Order, Now !!
           </Button>
         </Link>
       </div>

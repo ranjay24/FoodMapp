@@ -17,12 +17,12 @@ const Profile = () => {
   const {user, updateProfile} = useUserStore();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [profileData, setProfileData] = useState({
-    fullname: user?.fullname || "",
-    email: user?.email || "", 
-    address: user?.address || "",
-    city: user?.city || "",
-    country: user?.country || "",
-    profilePicture: user?.profilePicture || "",
+    fullname: user?.fullname || " ",
+    email: user?.email || " ", 
+    address: user?.address || " ",
+    city: user?.city || " ",
+    country: user?.country || " ",
+    profilePicture: user?.profilePicture || " ",
   });
   const imageRef = useRef<HTMLInputElement | null>(null);
   const [selectedProfilePicture, setSelectedProfilePicture] =

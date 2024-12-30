@@ -114,7 +114,7 @@ export const generateWelcomeEmailHtml = (name: string) => {
             <body>
               <div class="email-container">
                 <div class="email-header">
-                  <h1>Welcome to Patel Food!</h1>
+                  <h1>Welcome to FoodMap.com!</h1>
                 </div>
                 <div class="email-body">
                   <p>Hi ${name},</p>

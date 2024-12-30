@@ -78,71 +78,99 @@ const EditMenu = ({
   }, [selectedMenu]);
   return (
     <Dialog open={editOpen} onOpenChange={setEditOpen}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Edit Menu</DialogTitle>
-          <DialogDescription>
-            Update your menu to keep your offerings fresh and exciting!
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={submitHandler} className="space-y-4">
-          <div>
-            <Label>Name</Label>
-            <Input
-              type="text"
-              name="name"
-              value={input.name}
-              onChange={changeEventHandler}
-              placeholder="Enter menu name"
-            />
-            {error && <span className="text-xs font-medium text-red-600">{error.name}</span>}
-          </div>
-          <div>
-            <Label>Description</Label>
-            <Input
-              type="text"
-              name="description"
-              value={input.description}
-              onChange={changeEventHandler}
-              placeholder="Enter menu description"
-            />
-            {error && <span className="text-xs font-medium text-red-600">{error.description}</span>}
-          </div>
-          <div>
-            <Label>Price in (Rupees)</Label>
-            <Input
-              type="number"
-              name="price"
-              value={input.price}
-              onChange={changeEventHandler}
-              placeholder="Enter menu price"
-            />
-            {error && <span className="text-xs font-medium text-red-600">{error.price}</span>}
-          </div>
-          <div>
-            <Label>Upload Menu Image</Label>
-            <Input
-              type="file"
-              name="image"
-              onChange={(e) =>
-                setInput({ ...input, image: e.target.files?.[0] || undefined })
-              }
-            />
-            {error && <span className="text-xs font-medium text-red-600">{error.image?.name}</span>}
-          </div>
-          <DialogFooter className="mt-5">
-            {loading ? (
-              <Button disabled className="bg-orange hover:bg-hoverOrange">
-                <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <Button className="bg-orange hover:bg-hoverOrange">Submit</Button>
-            )}
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+    <DialogContent className="max-w-lg p-6 bg-white shadow-lg rounded-lg">
+      <DialogHeader>
+        <DialogTitle className="text-xl font-bold text-gray-800">Edit Menu</DialogTitle>
+        <DialogDescription className="text-sm text-gray-600">
+          Update your menu to keep your offerings fresh and exciting!
+        </DialogDescription>
+      </DialogHeader>
+  
+      <form onSubmit={submitHandler} className="space-y-5">
+        {/* Menu Name */}
+        <div>
+          <Label className="block text-sm font-medium text-gray-700">Name</Label>
+          <Input
+            type="text"
+            name="name"
+            value={input.name}
+            onChange={changeEventHandler}
+            placeholder="Enter menu name"
+            className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+          {error && (
+            <span className="text-xs font-medium text-red-600 mt-1">{error.name}</span>
+          )}
+        </div>
+  
+        {/* Menu Description */}
+        <div>
+          <Label className="block text-sm font-medium text-gray-700">Description</Label>
+          <Input
+            type="text"
+            name="description"
+            value={input.description}
+            onChange={changeEventHandler}
+            placeholder="Enter menu description"
+            className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+          {error && (
+            <span className="text-xs font-medium text-red-600 mt-1">{error.description}</span>
+          )}
+        </div>
+  
+        {/* Menu Price */}
+        <div>
+          <Label className="block text-sm font-medium text-gray-700">Price in (Rupees)</Label>
+          <Input
+            type="number"
+            name="price"
+            value={input.price}
+            onChange={changeEventHandler}
+            placeholder="Enter menu price"
+            className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+          {error && (
+            <span className="text-xs font-medium text-red-600 mt-1">{error.price}</span>
+          )}
+        </div>
+  
+        {/* Menu Image */}
+        <div>
+          <Label className="block text-sm font-medium text-gray-700">Upload Menu Image</Label>
+          <Input
+            type="file"
+            name="image"
+            onChange={(e) =>
+              setInput({ ...input, image: e.target.files?.[0] || undefined })
+            }
+            className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+          {error && (
+            <span className="text-xs font-medium text-red-600 mt-1">{error.image?.name}</span>
+          )}
+        </div>
+  
+        {/* Footer */}
+        <DialogFooter className="mt-6 flex justify-end">
+          {loading ? (
+            <Button
+              disabled
+              className="flex items-center px-4 py-2 bg-gray-600 text-white rounded-md shadow-md hover:bg-gray-700"
+            >
+              <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+              Please wait
+            </Button>
+          ) : (
+            <Button className="px-4 py-2 bg-gray-600 text-white rounded-md shadow-md hover:bg-gray-700">
+              Submit
+            </Button>
+          )}
+        </DialogFooter>
+      </form>
+    </DialogContent>
+  </Dialog>
+  
   );
 };
 

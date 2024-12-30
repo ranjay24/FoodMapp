@@ -6,7 +6,7 @@ import uploadImageOnCloudinary from "../utils/imageUpload";
 
 export const createRestaurant = async (req: Request, res: Response) => {
     try {
-        const { restaurantName, city, country, deliveryTime, cuisines } = req.body;
+        const { restaurantName, city, country, deliveryTime,address, cuisines } = req.body;
         const file = req.file;
 
         const restaurant = await Restaurant.findOne({ user: req.id });
@@ -31,6 +31,7 @@ export const createRestaurant = async (req: Request, res: Response) => {
             city,
             country,
             deliveryTime,
+            address,
             cuisines: JSON.parse(cuisines),
             imageUrl
         });
@@ -66,7 +67,7 @@ export const getRestaurant = async (req: Request, res: Response) => {
 }
 export const updateRestaurant = async (req: Request, res: Response) => {
     try {
-        const { restaurantName, city, country, deliveryTime, cuisines } = req.body;
+        const { restaurantName, city, country, deliveryTime,address, cuisines } = req.body;
         const file = req.file;
         const restaurant = await Restaurant.findOne({ user: req.id });
         if (!restaurant) {
@@ -80,6 +81,7 @@ export const updateRestaurant = async (req: Request, res: Response) => {
         restaurant.city = city;
         restaurant.country = country;
         restaurant.deliveryTime = deliveryTime;
+        restaurant.address = address;
         restaurant.cuisines = JSON.parse(cuisines);
 
         if (file) {

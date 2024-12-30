@@ -175,15 +175,15 @@
 
 
 
+import { useRestaurantStore } from "@/store/useRestaurantStore";
 import React, { useEffect, useState } from "react";
 
 const TrackOrder: React.FC = () => {
   const [estimatedTime, setEstimatedTime] = useState<string | null>(null);
   const [restaurantLocation, setRestaurantLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
-
-  const restaurantAddress = "National Highway No. 753 F Close to Ajanta caves, Fardapur, Maharashtra 431118"; // Example address
-
+  const { restaurant } = useRestaurantStore();
+  const restaurantAddress = restaurant?.address || "Paithan Rd, Kanchanwadi, Chhatrapati Sambhaji Nagar, Maharashtra 431001"; // Use the address from the restaurant state
   useEffect(() => {
     // Fetch restaurant location using address
     getCoordinatesFromAddress(restaurantAddress).then((coordinates) => {

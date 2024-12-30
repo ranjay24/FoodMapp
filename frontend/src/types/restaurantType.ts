@@ -14,6 +14,7 @@ export type Restaurant = {
     city: string;
     country: string;
     deliveryTime: number;
+    address:string;
     cuisines: string[];
     menus: MenuItem[];
     imageUrl: string;

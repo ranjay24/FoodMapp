@@ -6,6 +6,7 @@ export interface IRestaurant {
     city:string;
     country:string;
     deliveryTime:number;
+    address:string;
     cuisines: string[];
     imageUrl:string;
     menus:mongoose.Schema.Types.ObjectId[]
@@ -35,6 +36,10 @@ const restaurantSchema = new mongoose.Schema<IRestaurantDocument>({
     },
     deliveryTime:{
         type:Number,
+        required:true
+    },
+    address:{
+        type:String,
         required:true
     },
     cuisines:[{type:String, required:true}],
