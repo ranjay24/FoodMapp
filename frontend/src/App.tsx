@@ -19,6 +19,7 @@ import { useUserStore } from "./store/useUserStore";
 import { useEffect } from "react";
 import Loading from "./components/Loading";
 import TrackOrder from "./components/TrackOrder";
+import { Toaster } from "sonner";
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, user } = useUserStore();
@@ -133,6 +134,7 @@ function App() {
   if(isCheckingAuth) return <Loading/>
   return (
     <>
+     <Toaster position="top-right" />
       <RouterProvider router={appRouter}></RouterProvider>
     </>
   );

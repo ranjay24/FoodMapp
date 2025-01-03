@@ -78,7 +78,7 @@ const EditMenu = ({
   }, [selectedMenu]);
   return (
     <Dialog open={editOpen} onOpenChange={setEditOpen}>
-    <DialogContent className="max-w-lg p-6 bg-white shadow-lg rounded-lg">
+    <DialogContent className="max-w-lg p-6 bg-white shadow-lg rounded-lg transition-all duration-500 transform animate-dialog-fade">
       <DialogHeader>
         <DialogTitle className="text-xl font-bold text-gray-800">Edit Menu</DialogTitle>
         <DialogDescription className="text-sm text-gray-600">
@@ -170,6 +170,7 @@ const EditMenu = ({
       </form>
     </DialogContent>
   </Dialog>
+  
   
   );
 };

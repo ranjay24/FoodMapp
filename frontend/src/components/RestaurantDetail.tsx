@@ -19,7 +19,7 @@ const RestaurantDetail = () => {
     <div className="font-serif max-w-6xl mx-auto my-10 px-4">
   <div className="w-full bg-gray-50 rounded-lg shadow-lg p-6">
     {/* Restaurant Image */}
-    <div className="relative w-full h-40 md:h-64 lg:h-80">
+    <div className="relative w-full h-40 md:h-64 lg:h-80 animate-fade-in-up">
       <img
         src={singleRestaurant?.imageUrl || "Loading..."}
         alt="Restaurant"
@@ -28,7 +28,7 @@ const RestaurantDetail = () => {
     </div>
 
     {/* Restaurant Details */}
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center my-6">
+    <div className="flex flex-col md:flex-row justify-between items-start md:items-center my-6 animate-fade-in-up">
       <div>
         <h1 className="font-bold text-2xl text-gray-800">
           {singleRestaurant?.restaurantName || "Loading..."}
@@ -48,7 +48,7 @@ const RestaurantDetail = () => {
       </div>
 
       {/* Delivery Time */}
-      <div className="flex items-center gap-2 mt-4 md:mt-0">
+      <div className="flex items-center gap-2 mt-4 md:mt-0 animate-fade-in-up">
         <Timer className="w-6 h-6 text-gray-600" />
         <h1 className="text-lg font-medium text-gray-700">
           Delivery Time:{" "}
@@ -61,13 +61,14 @@ const RestaurantDetail = () => {
 
     {/* Available Menus */}
     {singleRestaurant?.menus && (
-      <div className="mt-8">
+      <div className="mt-8 animate-fade-in-up">
         <h2 className="text-xl font-bold text-gray-800 mb-4">Available Menus</h2>
         <AvailableMenu menus={singleRestaurant?.menus!} />
       </div>
     )}
   </div>
 </div>
+
 
   );
 };

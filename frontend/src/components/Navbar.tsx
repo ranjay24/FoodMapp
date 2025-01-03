@@ -50,20 +50,19 @@ const Navbar = () => {
 <div className="font-serif max-w-7xl mx-auto py-1">
   <div className="flex items-center justify-between h-16 px-4 md:px-0">
     {/* Logo Section */}
-   
-    <Link to="/" className="flex items-center gap-1">
-    <Link to="/" className="flex items-center gap-2"/>
-    <img
-      src={Foodlogo} // Replace with your logo path
-      alt="FoodMap Logo"
-      className="w-7 h-10 object-cover"/>
+    <Link to="/" className="flex items-center gap-1 animate-fade-in-up">
+      <img
+        src={Foodlogo} // Replace with your logo path
+        alt="FoodMap Logo"
+        className="w-7 h-10 object-cover"
+      />
       <h1 className="font-bold md:font-extrabold text-2xl text-gray-800 hover:text-gray-600 transition">
         FoodMap
       </h1>
     </Link>
 
     {/* Desktop Menu */}
-    <div className="hidden md:flex items-center gap-10">
+    <div className="hidden md:flex items-center gap-10 animate-fade-in-up">
       <div className="hidden md:flex items-center gap-6 text-gray-700">
         <Link
           to="/"
@@ -118,10 +117,9 @@ const Navbar = () => {
       </div>
 
       {/* Right Section */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 animate-fade-in-up">
         {/* Theme Toggle */}
-        <div>
-        </div>
+        <div></div>
 
         {/* Cart */}
         <Link to="/cart" className="relative cursor-pointer hover:text-gray-600">
@@ -170,15 +168,16 @@ const Navbar = () => {
     </div>
 
     {/* Mobile Navbar */}
-    <div className="md:hidden">
+    <div className="md:hidden animate-fade-in-up">
       {/* Mobile responsive  */}
       <MobileNavbar />
     </div>
   </div>
 
   {/* Divider Section */}
-  <div className="border-t border-gray-700 my-4"></div>
+  <div className="border-t border-gray-700 my-4 animate-fade-in-up"></div>
 </div>
+
 
   );
 };
@@ -190,120 +189,118 @@ const MobileNavbar = () => {
   //   const { setTheme } = useThemeStore();
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          size={"icon"}
-          className="font-serif rounded-full bg-gray-200 text-black hover:bg-gray-300"
-          variant="outline"
+    <SheetTrigger asChild>
+      <Button
+        size={"icon"}
+        className="font-serif rounded-full bg-gray-200 text-black hover:bg-gray-300"
+        variant="outline"
+      >
+        <Menu size={"18"} />
+      </Button>
+    </SheetTrigger>
+    <SheetContent className="font-serif flex flex-col bg-white min-h-screen animate-slide-in-right">
+      {/* Header */}
+      <SheetHeader className="flex flex-row items-center justify-between mt-2 animate-fade-in-up">
+        <SheetTitle className="text-lg font-bold text-gray-800">FoodMap</SheetTitle>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="icon">
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem
+            //   onClick={() => setTheme("light")}
+            >
+              Light
+            </DropdownMenuItem>
+            <DropdownMenuItem
+            //   onClick={() => setTheme("dark")}
+            >
+              Dark
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SheetHeader>
+  
+      <Separator className="my-2" />
+  
+      {/* Links Section */}
+      <SheetDescription className="flex-1 overflow-y-auto">
+        <Link
+          to="/profile"
+          className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition animate-fade-in-up"
         >
-          <Menu size={"18"} />
-        </Button>
-      </SheetTrigger>
-      <SheetContent className="font-serif flex flex-col bg-white min-h-screen">
-        {/* Header */}
-        <SheetHeader className="flex flex-row items-center justify-between mt-2">
-          <SheetTitle className="text-lg font-bold text-gray-800">FoodMap</SheetTitle>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem
-              //   onClick={() => setTheme("light")}
-              >
-                Light
-              </DropdownMenuItem>
-              <DropdownMenuItem
-              //   onClick={() => setTheme("dark")}
-              >
-                Dark
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </SheetHeader>
-
-        <Separator className="my-2" />
-
-        {/* Links Section */}
-        <SheetDescription className="flex-1 overflow-y-auto">
-          <Link
-            to="/profile"
-            className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition"
-          >
-            <User />
-            <span>Profile</span>
-          </Link>
-          <Link
-            to="/order/status"
-            className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition"
-          >
-            <HandPlatter />
-            <span>Order</span>
-          </Link>
-          <Link
-            to="/cart"
-            className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition"
-          >
-            <ShoppingCart />
-            <span>Cart (0)</span>
-          </Link>
-          {user?.admin && (
-            <>
-              <Link
-                to="/admin/menu"
-                className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition"
-              >
-                <SquareMenu />
-                <span>Menu</span>
-              </Link>
-              <Link
-                to="/admin/restaurant"
-                className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition"
-              >
-                <UtensilsCrossed />
-                <span>Restaurant</span>
-              </Link>
-              <Link
-                to="/admin/orders"
-                className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition"
-              >
-                <PackageCheck />
-                <span>Restaurant Orders</span>
-              </Link>
-            </>
+          <User />
+          <span>Profile</span>
+        </Link>
+        <Link
+          to="/order/status"
+          className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition animate-fade-in-up"
+        >
+          <HandPlatter />
+          <span>Order</span>
+        </Link>
+        <Link
+          to="/cart"
+          className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition animate-fade-in-up"
+        >
+          <ShoppingCart />
+          <span>Cart (0)</span>
+        </Link>
+        {user?.admin && (
+          <>
+            <Link
+              to="/admin/menu"
+              className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition animate-fade-in-up"
+            >
+              <SquareMenu />
+              <span>Menu</span>
+            </Link>
+            <Link
+              to="/admin/restaurant"
+              className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition animate-fade-in-up"
+            >
+              <UtensilsCrossed />
+              <span>Restaurant</span>
+            </Link>
+            <Link
+              to="/admin/orders"
+              className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition animate-fade-in-up"
+            >
+              <PackageCheck />
+              <span>Restaurant Orders</span>
+            </Link>
+          </>
+        )}
+      </SheetDescription>
+  
+      {/* Footer Section */}
+      <SheetFooter className="flex flex-col gap-4 animate-fade-in-up">
+        <div className="flex flex-row items-center gap-2">
+          <Avatar>
+            <AvatarImage src={user?.profilePicture} />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <h1 className="font-bold text-gray-800">FoodMap.com</h1>
+        </div>
+        <SheetClose asChild>
+          {loading ? (
+            <Button className="bg-orange hover:bg-hoverOrange">
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </Button>
+          ) : (
+            <Button onClick={logout} className="bg-orange hover:bg-hoverOrange">
+              Logout
+            </Button>
           )}
-        </SheetDescription>
-
-        {/* Footer Section */}
-        <SheetFooter className="flex flex-col gap-4">
-          <div className="flex flex-row items-center gap-2">
-            <Avatar>
-              <AvatarImage src={user?.profilePicture} />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <h1 className="font-bold text-gray-800">FoodMap.com</h1>
-          </div>
-          <SheetClose asChild>
-            {loading ? (
-              <Button className="bg-orange hover:bg-hoverOrange">
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Please wait
-              </Button>
-            ) : (
-              <Button
-                onClick={logout}
-                className="bg-orange hover:bg-hoverOrange"
-              >
-                Logout
-              </Button>
-            )}
-          </SheetClose>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+        </SheetClose>
+      </SheetFooter>
+    </SheetContent>
+  </Sheet>
+  
   );
 };

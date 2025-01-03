@@ -29,132 +29,134 @@ const SearchPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto my-10 px-4">
-      <div className="flex flex-col md:flex-row justify-between gap-10">
-        {/* Filter Section */}
-        <div className="md:w-1/4 w-full">
-          <FilterPage />
-        </div>
+  <div className="flex flex-col md:flex-row justify-between gap-10">
+    {/* Filter Section */}
+    <div className="md:w-1/4 w-full animate-fade-in-left">
+      <FilterPage />
+    </div>
 
-        {/* Search and Results Section */}
-        <div className="flex-1">
-          {/* Search Input Field */}
-          <div className="flex items-center gap-2 mb-5">
-            <Input
-              type="text"
-              value={searchQuery}
-              placeholder="Search by restaurant & cuisines"
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300"
+    {/* Search and Results Section */}
+    <div className="flex-1">
+      {/* Search Input Field */}
+      <div className="flex items-center gap-2 mb-5 animate-fade-in-up">
+        <Input
+          type="text"
+          value={searchQuery}
+          placeholder="Search by restaurant & cuisines"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all duration-300 ease-in-out shadow-md"
+        />
+        <Button
+          onClick={() =>
+            searchRestaurant(params.text!, searchQuery, appliedFilter)
+          }
+          className="bg-orange hover:bg-hoverOrange px-6 py-3 rounded-lg text-white transition-colors duration-200 transform hover:scale-105 shadow-md"
+        >
+          Search
+        </Button>
+      </div>
+
+      {/* Applied Filters Display */}
+      <div className="flex flex-wrap gap-2 mb-4 animate-fade-in-up">
+        {appliedFilter.map((selectedFilter: string, idx: number) => (
+          <div
+            key={idx}
+            className="relative inline-flex items-center max-w-full mb-2"
+          >
+            <Badge className="bg-[#D19254] text-white rounded-md hover:cursor-pointer pr-6 whitespace-nowrap transition-all duration-300 ease-in-out shadow-md">
+              {selectedFilter}
+            </Badge>
+            <X
+              onClick={() => setAppliedFilter(selectedFilter)}
+              size={16}
+              className="absolute text-white right-1 hover:cursor-pointer transition-transform duration-300 hover:scale-110"
             />
-            <Button
-              onClick={() =>
-                searchRestaurant(params.text!, searchQuery, appliedFilter)
-              }
-              className="bg-orange hover:bg-hoverOrange px-6 py-3 rounded-lg text-white transition-colors duration-200 transform hover:scale-105"
-            >
-              Search
-            </Button>
           </div>
+        ))}
+      </div>
 
-          {/* Applied Filters Display */}
-          <div className="flex flex-wrap gap-2 mb-4">
-            {appliedFilter.map((selectedFilter: string, idx: number) => (
-              <div
-                key={idx}
-                className="relative inline-flex items-center max-w-full mb-2"
-              >
-                <Badge className="bg-[#D19254] text-white rounded-md hover:cursor-pointer pr-6 whitespace-nowrap transition-all duration-300 ease-in-out">
-                  {selectedFilter}
-                </Badge>
-                <X
-                  onClick={() => setAppliedFilter(selectedFilter)}
-                  size={16}
-                  className="absolute text-white right-1 hover:cursor-pointer transition-transform duration-300 hover:scale-110"
-                />
-              </div>
-            ))}
-          </div>
+      {/* Search Results Header */}
+      <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-2 my-3 animate-fade-in-up">
+        <h1 className="font-medium text-xl text-gray-800 dark:text-gray-200">
+          ({searchedRestaurant?.data.length}) Search result found
+        </h1>
+      </div>
 
-          {/* Search Results Header */}
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-2 my-3">
-            <h1 className="font-medium text-xl text-gray-800 dark:text-gray-200">
-              ({searchedRestaurant?.data.length}) Search result found
-            </h1>
-          </div>
+      {/* Restaurant Cards */}
+      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+        {loading ? (
+          <SearchPageSkeleton />
+        ) : !loading && searchedRestaurant?.data.length === 0 ? (
+          <NoResultFound searchText={params.text!} />
+        ) : (
+          searchedRestaurant?.data.map((restaurant: Restaurant) => (
+            <Card
+  key={restaurant._id}
+  className="bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-transform duration-300 ease-in-out animate-fade-in-up transform hover:scale-105"
+>
+  <div className="relative">
+    <AspectRatio ratio={16 / 6}>
+      <img
+        src={restaurant.imageUrl}
+        alt="Restaurant Image"
+        className="w-full h-full object-cover rounded-t-xl transition-all duration-300 ease-in-out transform hover:scale-105"
+      />
+    </AspectRatio>
+    <div className="absolute top-2 left-2 bg-white dark:bg-gray-700 bg-opacity-75 rounded-lg px-3 py-1 shadow-md">
+      <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+        Featured
+      </span>
+    </div>
+  </div>
+  <CardContent className="p-4">
+    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2 transition-all duration-300 ease-in-out hover:text-orange">
+      {restaurant.restaurantName}
+    </h1>
+    <div className="mt-2 gap-1 flex items-center text-gray-600 dark:text-gray-400">
+      <MapPin size={16} />
+      <p className="text-sm">
+        City:{" "}
+        <span className="font-medium">{restaurant.city}</span>
+      </p>
+    </div>
+    <div className="mt-2 gap-1 flex items-center text-gray-600 dark:text-gray-400">
+      <Globe size={16} />
+      <p className="text-sm">
+        Country:{" "}
+        <span className="font-medium">
+          {restaurant.country}
+        </span>
+      </p>
+    </div>
+    <div className="flex gap-2 mt-4 flex-wrap">
+      {restaurant.cuisines.map(
+        (cuisine: string, idx: number) => (
+          <Badge
+            key={idx}
+            className="font-medium px-3 py-1 rounded-full shadow-sm bg-gray-300 text-gray-900 text-sm hover:bg-gray-400 transition-colors duration-200 transform hover:scale-105"
+          >
+            {cuisine}
+          </Badge>
+        )
+      )}
+    </div>
+  </CardContent>
+  <CardFooter className="p-4 border-t dark:border-t-gray-700 border-t-gray-100 text-white flex justify-end">
+    <Link to={`/restaurant/${restaurant._id}`}>
+      <Button className="bg-orange hover:bg-hoverOrange font-semibold py-2 px-4 rounded-full shadow-md transition-colors duration-200 transform hover:scale-105">
+        View Menus
+      </Button>
+    </Link>
+  </CardFooter>
+</Card>
 
-          {/* Restaurant Cards */}
-          <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-            {loading ? (
-              <SearchPageSkeleton />
-            ) : !loading && searchedRestaurant?.data.length === 0 ? (
-              <NoResultFound searchText={params.text!} />
-            ) : (
-              searchedRestaurant?.data.map((restaurant: Restaurant) => (
-                <Card
-                  key={restaurant._id}
-                  className="bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-in-out"
-                >
-                  <div className="relative">
-                    <AspectRatio ratio={16 / 6}>
-                      <img
-                        src={restaurant.imageUrl}
-                        alt="Restaurant Image"
-                        className="w-full h-full object-cover rounded-t-xl"
-                      />
-                    </AspectRatio>
-                    <div className="absolute top-2 left-2 bg-white dark:bg-gray-700 bg-opacity-75 rounded-lg px-3 py-1 shadow-md">
-                      <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                        Featured
-                      </span>
-                    </div>
-                  </div>
-                  <CardContent className="p-4">
-                    <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                      {restaurant.restaurantName}
-                    </h1>
-                    <div className="mt-2 gap-1 flex items-center text-gray-600 dark:text-gray-400">
-                      <MapPin size={16} />
-                      <p className="text-sm">
-                        City:{" "}
-                        <span className="font-medium">{restaurant.city}</span>
-                      </p>
-                    </div>
-                    <div className="mt-2 gap-1 flex items-center text-gray-600 dark:text-gray-400">
-                      <Globe size={16} />
-                      <p className="text-sm">
-                        Country:{" "}
-                        <span className="font-medium">
-                          {restaurant.country}
-                        </span>
-                      </p>
-                    </div>
-                    <div className="flex gap-2 mt-4 flex-wrap">
-                      {restaurant.cuisines.map(
-                        (cuisine: string, idx: number) => (
-                          <Badge
-                            key={idx}
-                            className="font-medium px-3 py-1 rounded-full shadow-sm bg-gray-300 text-gray-900 text-sm hover:bg-gray-400 transition-colors duration-200"
-                          >
-                            {cuisine}
-                          </Badge>
-                        )
-                      )}
-                    </div>
-                  </CardContent>
-                  <CardFooter className="p-4 border-t dark:border-t-gray-700 border-t-gray-100 text-white flex justify-end">
-                    <Link to={`/restaurant/${restaurant._id}`}>
-                      <Button className="bg-orange hover:bg-hoverOrange font-semibold py-2 px-4 rounded-full shadow-md transition-colors duration-200 transform hover:scale-105">
-                        View Menus
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))
-            )}
-          </div>
-        </div>
+          ))
+        )}
       </div>
     </div>
+  </div>
+</div>
+
   );
 };
 

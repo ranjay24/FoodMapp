@@ -1,180 +1,3 @@
-// import React, { useEffect, useState } from "react";
-
-// // Function to extract latitude and longitude from a URL
-
-// // function getCoordinatesFromUrl(url: string): { latitude: number; longitude: number } | null {
-// //   try {
-// //     // Parse the URL
-// //     const parsedUrl = new URL(url);
-// //     // Extract latitude and longitude from query parameters
-// //     const latitude = parseFloat(parsedUrl.searchParams.get("lat") || "");
-// //     const longitude = parseFloat(parsedUrl.searchParams.get("lng") || "");
-
-// //     // Validate the extracted values
-// //     if (isNaN(latitude) || isNaN(longitude)) {
-// //       throw new Error("Invalid latitude or longitude");
-// //     }
-
-// //     // Return the extracted coordinates
-// //     return { latitude, longitude };
-// //   } catch (error) {
-// //     // Check if error is an instance of Error
-// //     if (error instanceof Error) {
-// //       console.error("Error extracting coordinates:", error.message);
-// //     } else {
-// //       console.error("An unknown error occurred while extracting coordinates.");
-// //     }
-// //     return null;
-// //   }
-// // }
-// //------------------------------------------------------------
-// const TrackOrder: React.FC = () => {
-//   const [estimatedTime, setEstimatedTime] = useState<string | null>(null);
-// //19.8288555856858, 75.28598731306451 19.878457636305754, 75.36614495767162
-//   const restaurantLocation = {lat: 19.878457636305754, lng: 75.36614495767162 }; // Example restaurant coordinates
-//   // const restaurantUrl = "https://maps.app.goo.gl/hvJYo7qgzKHKPGkZ8";
-//   // const coordinates = getCoordinatesFromUrl(restaurantUrl);
-//   // const restaurantLocation = { lat: coordinates.latitude, lng: coordinates.longitude };
-  
-//   useEffect(() => {
-//     const initMap = (userLocation: google.maps.LatLngLiteral) => {
-//       // Initialize the map centered at the user's location
-//       const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-//         zoom: 14,
-//         center: userLocation,
-//       });
-
-//       // Add a marker for the user's location
-//       new google.maps.Marker({
-//         position: userLocation,
-//         map,
-//         title: "Your Location",
-//         icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-//       });
-
-//       // Add a marker for the restaurant location
-//       new google.maps.Marker({
-//         position: restaurantLocation,
-//         map,
-//         title: "Restaurant Location",
-//         icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
-//       });
-
-//       // Initialize directions service and renderer
-//       const directionsService = new google.maps.DirectionsService();
-//       const directionsRenderer = new google.maps.DirectionsRenderer({
-//         map,
-//         suppressMarkers: true, // Suppress default markers
-//       });
-
-//       // Calculate and display the route
-//       directionsService.route(
-//         {
-//           origin: userLocation,
-//           destination: restaurantLocation,
-//           travelMode: google.maps.TravelMode.DRIVING,
-//         },
-//         (response, status) => {
-//           if (status === google.maps.DirectionsStatus.OK && response) {
-//             directionsRenderer.setDirections(response);
-
-//             // Extract and set the estimated delivery time
-//             if (response.routes && response.routes.length > 0) {
-//               const route = response.routes[0];
-//               if (route.legs && route.legs.length > 0) {
-//                 const leg = route.legs[0];
-//                 if (leg.duration) {
-//                   setEstimatedTime(leg.duration.text); // Format like "20 mins"
-//                 }
-//               }
-//             }
-//           } else {
-//             console.error("Directions request failed due to: " + status);
-//           }
-//         }
-//       );
-//     };
-
-//     const fetchUserLocation = () => {
-//       if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(
-//           (position) => {
-//             const userLocation = {
-//               lat: position.coords.latitude,
-//               lng: position.coords.longitude,
-//             };
-//             initMap(userLocation);
-//           },
-//           (error) => {
-//             console.error("Error fetching user's location:", error.message);
-//             alert("Unable to fetch your location. Please check location permissions.");
-//           }
-//         );
-//       } else {
-//         alert("Geolocation is not supported by your browser.");
-//       }
-//     };
-
-//     fetchUserLocation();
-//   }, []);
-
-//   return (
-//     <div>
-//       <h1 style={{ textAlign: "center", margin: "20px 0", fontSize: "24px", fontWeight: "bold" }}>
-//         Track Your Order
-//       </h1>
-//       <div id="map" style={{ width: "100%", height: "500px", marginBottom: "20px" }}></div>
-//       {estimatedTime && (
-//         <div
-//           style={{
-//             margin: "0 auto",
-//             padding: "20px",
-//             maxWidth: "400px",
-//             textAlign: "center",
-//             borderRadius: "15px",
-//             boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-//             backgroundColor: "#fff",
-//             display: "flex",
-//             alignItems: "center",
-//             gap: "15px",
-//           }}
-//         >
-//           <div
-//             style={{
-//               backgroundColor: "#FFD700",
-//               borderRadius: "50%",
-//               width: "60px",
-//               height: "60px",
-//               display: "flex",
-//               alignItems: "center",
-//               justifyContent: "center",
-//             }}
-//           >
-//             <img
-//               src="https://cdn-icons-png.flaticon.com/512/3143/3143267.png"
-//               alt="Delivery Icon"
-//               style={{ width: "40px", height: "40px" }}
-//             />
-//           </div>
-//           <div style={{ textAlign: "left" }}>
-//             <h3 style={{ margin: 0, fontSize: "20px", fontWeight: "bold", color: "#333" }}>
-//               Estimated Delivery Time
-//             </h3>
-//             <p style={{ margin: 0, fontSize: "18px", color: "#555" }}>{estimatedTime}</p>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default TrackOrder;
-
-
-//-------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 import { useRestaurantStore } from "@/store/useRestaurantStore";
 import React, { useEffect, useState } from "react";
 
@@ -321,52 +144,27 @@ const TrackOrder: React.FC = () => {
   }, [userLocation, restaurantLocation]);
 
   return (
-    <div>
-      <h1 style={{ textAlign: "center", margin: "20px 0", fontSize: "24px", fontWeight: "bold" }}>
-        Track Your Order
-      </h1>
-      <div id="map" style={{ width: "100%", height: "500px", marginBottom: "20px" }}></div>
-      {estimatedTime && (
-        <div
-          style={{
-            margin: "0 auto",
-            padding: "20px",
-            maxWidth: "400px",
-            textAlign: "center",
-            borderRadius: "15px",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-            backgroundColor: "#fff",
-            display: "flex",
-            alignItems: "center",
-            gap: "15px",
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: "#FFD700",
-              borderRadius: "50%",
-              width: "60px",
-              height: "60px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/3143/3143267.png"
-              alt="Delivery Icon"
-              style={{ width: "40px", height: "40px" }}
-            />
-          </div>
-          <div style={{ textAlign: "left" }}>
-            <h3 style={{ margin: 0, fontSize: "20px", fontWeight: "bold", color: "#333" }}>
-              Estimated Delivery Time
-            </h3>
-            <p style={{ margin: 0, fontSize: "18px", color: "#555" }}>{estimatedTime}</p>
-          </div>
+    <div className="font-serif flex flex-col items-center justify-center min-h-screen w-full bg-gray-100">
+    <h1 className="text-3xl font-bold text-gray-800 mb-6">Track Your Order</h1>
+    <div id="map" className="w-full h-80 mb-6 rounded-lg shadow-lg bg-gray-300"></div>
+    
+    {estimatedTime && (
+      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-lg flex items-center gap-4">
+        <div className="bg-yellow-500 rounded-full w-16 h-16 flex items-center justify-center">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3143/3143267.png"
+            alt="Delivery Icon"
+            className="w-10 h-10"
+          />
         </div>
-      )}
-    </div>
+        <div className="text-left">
+          <h3 className="text-xl font-semibold text-gray-700">Estimated Delivery Time</h3>
+          <p className="text-lg text-gray-600">{estimatedTime}</p>
+        </div>
+      </div>
+    )}
+  </div>
+  
   );
 };
 
