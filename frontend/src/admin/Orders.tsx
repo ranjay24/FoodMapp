@@ -34,7 +34,7 @@ const Orders = () => {
   {/* Content Layer */}
   <div className="relative z-10">
     {/* Orders Overview Header */}
-    <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-10 text-center animate-fade-in-up">
+    <h1 className="text-3xl font-extrabold text-green-100 dark:text-white mb-10 text-center animate-fade-in-up">
       Orders Overview
     </h1>
     

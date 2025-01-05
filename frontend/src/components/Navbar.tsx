@@ -110,6 +110,11 @@ const Navbar = () => {
                     Orders
                   </MenubarItem>
                 </Link>
+                <Link to="/admin/deliveryboy">
+                  <MenubarItem className="hover:bg-gray-100">
+                    DeliveryBoy
+                  </MenubarItem>
+                </Link>
               </MenubarContent>
             </MenubarMenu>
           </Menubar>
@@ -272,6 +277,13 @@ const MobileNavbar = () => {
             >
               <PackageCheck />
               <span>Restaurant Orders</span>
+            </Link>
+            <Link
+              to="/admin/deliveryboy"
+              className="flex items-center gap-4 hover:bg-gray-100 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium transition animate-fade-in-up"
+            >
+              <PackageCheck />
+              <span>Delivery Boy</span>
             </Link>
           </>
         )}

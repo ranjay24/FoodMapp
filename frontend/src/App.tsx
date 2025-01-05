@@ -20,6 +20,8 @@ import { useEffect } from "react";
 import Loading from "./components/Loading";
 import TrackOrder from "./components/TrackOrder";
 import { Toaster } from "sonner";
+import DeliveryBoy from "./admin/DeliveryBoy";
+
 
 const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, user } = useUserStore();
@@ -100,6 +102,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/track-order",
         element: <TrackOrder />,
+    },
+      {
+        path: "/admin/deliveryboy",
+        element: <DeliveryBoy />,
     },
     ],
   },

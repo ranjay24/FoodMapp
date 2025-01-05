@@ -8,6 +8,7 @@ import userRoute from "./routes/user.route";
 import restaurantRoute from "./routes/restaurant.route";
 import menuRoute from "./routes/menu.route";
 import orderRoute from "./routes/order.route";
+import deliveryBoyRoute from "./routes/deliveryboy.route";
 // import path from "path";
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/restaurant", restaurantRoute);
 app.use("/api/v1/menu", menuRoute);
 app.use("/api/v1/order", orderRoute);
+app.use("/api/v1/deliveryboy", deliveryBoyRoute);
 
 // app.use(express.static(path.join(DIRNAME,"/client/dist")));
 // app.use("*",(_,res) => {
