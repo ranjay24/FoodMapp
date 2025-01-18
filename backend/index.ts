@@ -37,11 +37,13 @@ app.use("/api/v1/menu", menuRoute);
 app.use("/api/v1/order", orderRoute);
 app.use("/api/v1/deliveryboy", deliveryBoyRoute);
 
-app.use(express.static(path.join(DIRNAME,"/frontend/dist")));
-app.use("*",(_,res) => {
-    res.sendFile(path.resolve(DIRNAME, "frontend","dist","index.html"));
+app.use(express.static(path.join(DIRNAME, "/frontend/dist")));
+app.use("*", (_, res) => {
+    res.sendFile(path.resolve(DIRNAME, "frontend", "dist", "index.html"));
 });
+
 
 app.listen(PORT, () => {
     connectDB();
+    console.log(`Server running on port ${PORT}`);
 });

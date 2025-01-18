@@ -2,12 +2,14 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
-  "scripts": {
-    "dev": "nodemon backend/index.ts",
-    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "nodemon backend/index.ts"
-  },
+  "main": "index.ts","scripts": {
+  "dev": "nodemon backend/index.ts",
+  "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+  "start": "node --max-old-space-size=2048 ./node_modules/ts-node/dist/bin.js backend/index.ts",
+  "backend": "nodemon backend/index.ts",
+  "frontend:build": "npm run build --prefix frontend"
+},
+
   "keywords": [],
   "author": "",
   "license": "ISC",
