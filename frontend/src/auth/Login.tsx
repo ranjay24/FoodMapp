@@ -31,7 +31,7 @@ const Login = () => {
     try {
       await login(input);
       navigate("/");
-    } catch (error) {console.log(error);
+    } catch (error) {
     }
   };
   // const loading =false

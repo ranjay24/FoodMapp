@@ -5,6 +5,7 @@ import { Badge } from "./ui/badge";
 import { Timer } from "lucide-react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Background1 from "@/assets/Background1.jpg"
 
 const RestaurantDetail = () => {
   const params = useParams();
@@ -16,6 +17,8 @@ const RestaurantDetail = () => {
     }, [params.id]);
 
   return (
+    <div className="font-serif flex flex-col md:flex-row max-w-7xl mx-auto md:p-10 rounded-lg items-center justify-center m-4 gap-20 relative bg-cover bg-center" style={{ backgroundImage: `url(${Background1})` }}>
+  <div className="absolute inset-0 bg-gray-800 opacity-90 pointer-events-none"></div> {/* Increased opacity */}
     <div className="font-serif max-w-6xl mx-auto my-10 px-4">
   <div className="w-full bg-gray-50 rounded-lg shadow-lg p-6">
     {/* Restaurant Image */}
@@ -67,6 +70,7 @@ const RestaurantDetail = () => {
       </div>
     )}
   </div>
+</div>
 </div>
 
 

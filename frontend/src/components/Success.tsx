@@ -5,8 +5,6 @@ import { Button } from "./ui/button";
 import { useOrderStore } from "@/store/useOrderStore";
 import { useEffect } from "react";
 import { CartItem } from "@/types/cartType";
-import aaaImage from "@/assets/aaa.png"
-
 import Background1 from "@/assets/Background1.jpg";
 
 

@@ -38,7 +38,6 @@ const navigate = useNavigate();
           await signup(input);
           navigate("/verify-email");
         } catch (error) {
-          console.log(error);
         }
     }
     // const loading = false;

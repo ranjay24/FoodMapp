@@ -50,7 +50,6 @@ export const useUserStore = create<UserState>()(
           });
       
           if (response.data.success) {
-            console.log(response.data);
             toast.success(response.data.message);
             set({
               loading: false, // Reset loading after success

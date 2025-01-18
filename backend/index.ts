@@ -9,7 +9,7 @@ import restaurantRoute from "./routes/restaurant.route";
 import menuRoute from "./routes/menu.route";
 import orderRoute from "./routes/order.route";
 import deliveryBoyRoute from "./routes/deliveryboy.route";
-// import path from "path";
+import path from "path";
 
 dotenv.config();
 
@@ -17,7 +17,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-// const DIRNAME = path.resolve();
+const DIRNAME = path.resolve();
 
 // default middleware for any mern project
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -37,12 +37,11 @@ app.use("/api/v1/menu", menuRoute);
 app.use("/api/v1/order", orderRoute);
 app.use("/api/v1/deliveryboy", deliveryBoyRoute);
 
-// app.use(express.static(path.join(DIRNAME,"/client/dist")));
-// app.use("*",(_,res) => {
-//     res.sendFile(path.resolve(DIRNAME, "client","dist","index.html"));
-// });
+app.use(express.static(path.join(DIRNAME,"/frontend/dist")));
+app.use("*",(_,res) => {
+    res.sendFile(path.resolve(DIRNAME, "frontend","dist","index.html"));
+});
 
 app.listen(PORT, () => {
     connectDB();
-    console.log(`Server listen at port ${PORT}`);
 });

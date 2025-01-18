@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon backend/index.ts",
+    "build":"npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "nodemon backend/index.ts"
   },
   "keywords": [],
   "author": "",
