@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 import { Orders } from "@/types/orderType";
 
-const API_END_POINT = "http://localhost:8000/api/v1/deliveryboy";
+const API_END_POINT = "https://foodmapp-8dt4.onrender.com/api/v1/deliveryboy";
 axios.defaults.withCredentials = true;
 
 interface DeliveryBoy {

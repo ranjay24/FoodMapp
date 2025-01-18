@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import axios from "axios";
-const API_END_POINT = "http://localhost:8000/api/v1/user";
+const API_END_POINT = "https://foodmapp-8dt4.onrender.com/api/v1/user";
 axios.defaults.withCredentials = true;
 
 type User = {
