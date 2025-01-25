@@ -137,9 +137,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌟 Acknowledgments
 - **Google Maps API** for location services.
-- **SendGrid/MailerSend** for email functionality.
-
----
-
-Feel free to reach out for any questions or feedback! 😊
-```
+- **MailTrap** for email functionality.
