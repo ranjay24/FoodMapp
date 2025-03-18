@@ -66,7 +66,7 @@ Follow the steps below to run the project locally:
 3. **Set Environment Variables**:
    Create a `.env` file in the `backend` directory with the following:
    ```env
-   PORT=5000
+   PORT=Port_Number
    MONGO_URI=your_mongo_database_uri
    JWT_SECRET=your_jwt_secret
    MAILTRAP_API_KEY=your_sendgrid_api_key
@@ -129,9 +129,6 @@ frontend/
 - **Team Member Name** - [GitHub Profile](https://github.com/teammemberusername)
 
 ---
-
-## 📜 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
