@@ -130,8 +130,6 @@ frontend/
 
 ---
 
----
-
 ## 🌟 Acknowledgments
 - **Google Maps API** for location services.
 - **MailTrap** for email functionality.
