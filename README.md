@@ -125,8 +125,8 @@ frontend/
 ---
 
 ## 🏆 Contributors
-- **Your Name** - [GitHub Profile](https://github.com/yourusername)
-- **Team Member Name** - [GitHub Profile](https://github.com/teammemberusername)
+- **Ranjay Devendra Singh** - [GitHub Profile](https://github.com/ranjay24)
+- **Samarth Deelip Kalegaonkar** - [GitHub Profile](https://github.com/SamK1828)
 
 ---
 
